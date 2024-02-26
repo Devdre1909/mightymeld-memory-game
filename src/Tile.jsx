@@ -1,36 +1,19 @@
-export function Tile({ content: Content, flip, state }) {
+export function Tile({ content: Content, flip, state, ...props }) {
   switch (state) {
     case "start":
       return (
-        <Back
-          className="inline-block h-8 w-8 bg-blue-300 text-center"
-          flip={flip}
-        />
+        <Back className="flipBack fadeHideAnimation" flip={flip} {...props} />
       );
     case "flipped":
       return (
-        <Front className="inline-block h-8 w-8 bg-green-500">
-          <Content
-            style={{
-              display: "inline-block",
-              width: "100%",
-              height: "100%",
-              verticalAlign: "top",
-            }}
-          />
+        <Front className="flipFront fadeShowAnimation" {...props}>
+          <Content className="absolute text-white text-5xl" />
         </Front>
       );
     case "matched":
       return (
-        <Matched className="inline-block h-8 w-8 text-gray-300">
-          <Content
-            style={{
-              display: "inline-block",
-              width: "100%",
-              height: "100%",
-              verticalAlign: "top",
-            }}
-          />
+        <Matched className="flipMatch" {...props}>
+          <Content className="absolute text-indigo-200 text-5xl" />
         </Matched>
       );
     default:
@@ -38,18 +21,22 @@ export function Tile({ content: Content, flip, state }) {
   }
 }
 
-function Back({ className, flip }) {
+function Back({ className, flip, ...props }) {
+  return <button onClick={flip} className={className} {...props}></button>;
+}
+
+function Front({ className, children, ...props }) {
   return (
-    <div onClick={flip} className={className}>
-      ?
-    </div>
+    <button className={className} {...props}>
+      {children}
+    </button>
   );
 }
 
-function Front({ className, children }) {
-  return <div className={className}>{children}</div>;
-}
-
-function Matched({ className, children }) {
-  return <div className={className}>{children}</div>;
+function Matched({ className, children, ...props }) {
+  return (
+    <button className={className} {...props}>
+      {children}
+    </button>
+  );
 }

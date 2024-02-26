@@ -3,7 +3,7 @@ export function fragment$fragment() {
 }
 
 export function div$html() {
-  return <div />;
+  return <div className="" />;
 }
 
 export function text$text() {
@@ -15,7 +15,7 @@ export function text_span$text() {
 }
 
 export function h1$html() {
-  return <h1>Heading 1</h1>;
+  return <h1 className="">Heading 1</h1>;
 }
 
 export function h2$html() {
@@ -39,7 +39,7 @@ export function h6$html() {
 }
 
 export function p$html() {
-  return <p>Paragraph</p>;
+  return <p className="">Paragraph</p>;
 }
 
 export function a$html() {
